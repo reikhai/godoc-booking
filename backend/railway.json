@@ -1,0 +1,10 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "startCommand": "sed -i \"s|^APP_ENV=.*|APP_ENV=$APP_ENV|;s|^APP_DEBUG=.*|APP_DEBUG=$APP_DEBUG|;s|^APP_URL=.*|APP_URL=$APP_URL|;s|^DB_HOST=.*|DB_HOST=$DB_HOST|;s|^DB_PORT=.*|DB_PORT=$DB_PORT|;s|^DB_DATABASE=.*|DB_DATABASE=$DB_DATABASE|;s|^DB_USERNAME=.*|DB_USERNAME=$DB_USERNAME|;s|^DB_PASSWORD=.*|DB_PASSWORD=$DB_PASSWORD|\" .env && php artisan config:clear && php artisan migrate:fresh --seed --force && php artisan serve --host=0.0.0.0 --port=$PORT",
+    "restartPolicyType": "ON_FAILURE"
+  }
+}
